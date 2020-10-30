@@ -5,7 +5,7 @@ import unittest
 import HtmlTestRunner
 from common.configEmail import EmailSending
 
-suite = unittest.defaultTestLoader.discover('testCase', 'test_unittest.py')
+suite = unittest.defaultTestLoader.discover('testCase', 'test_*.py')
 runner = HtmlTestRunner.HTMLTestRunner(report_title='试用测试报告')
 runner.run(suite)
 time.sleep(3)
