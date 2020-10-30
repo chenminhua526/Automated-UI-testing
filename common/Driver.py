@@ -1,17 +1,39 @@
 import os,time
 from appium import webdriver
+from common.readConfig import ReadConfig
 
 
 class Driver:
 
     def __init__(self):
-        self.command_executor = 'http://127.0.0.1:4723/wd/hub'
-        self.desire_caps = {
+        configs = ReadConfig()
+        server_ip = configs.get_server_conf('ip')
+        server_port = configs.get_server_conf('port')
+        self.command_executor = 'http://{}:{}/wd/hub'.format(server_ip, server_port)
+
+        # 设置启动参数
+        """
+        {
             "deviceName": "192.168.31.137:5555",
             "platformName": "Android",
             "platformVersion": "10",
             "appPackage": "com.ss.android.article.news",
             "appActivity": "com.ss.android.article.news.activity.MainActivity",
+            "noReset": true,
+            "unicodeKeyboard": true
+        }
+        """
+        device_name = configs.get_device_conf('deviceName')
+        platform_name = configs.get_device_conf('platform')
+        platform_version = configs.get_device_conf('version')
+        app_package = configs.get_app_conf('appPackage')
+        app_activity = configs.get_app_conf('appActivity')
+        self.desire_caps = {
+            "deviceName": device_name,
+            "platformName": platform_name,
+            "platformVersion": platform_version,
+            "appPackage": app_package,
+            "appActivity": app_activity,
             "noReset": True,
             "unicodeKeyboard": True
         }
@@ -26,7 +48,6 @@ class Driver:
 
     def quit(self):
         self.driver.quit()
-
 
 
 
