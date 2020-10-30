@@ -5,9 +5,9 @@ import os
 class ReadConfig:
 
     def __init__(self):
-        # path = os.path.dirname(os.path.abspath('.'))
-        # self.config_file = path + '\\config.ini'
-        self.config_file = "C:\\Users\\chenminhua\\PycharmProjects\\Vip6UIappium\\config.ini"
+        path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        self.config_file = path + '\\config.ini'
+        # self.config_file = "C:\\Users\\chenminhua\\PycharmProjects\\Vip6UIappium\\config.ini"
         self.conf = configparser.ConfigParser()
         self.conf.read(self.config_file, encoding='utf-8')
 
@@ -49,7 +49,7 @@ class ReadConfig:
     def get_Email_conf(self, option):
         section = "Email"
         value = self.get_value(section, option)
-        print(value)
+        # print(value)
         if option == 'recipients':
             value_list = value.split(',')
             return value_list
@@ -58,9 +58,6 @@ class ReadConfig:
 
 
 
-if __name__ == "__main__":
-    configs = ReadConfig()
-    configs.get_Email_conf('smtpServer')
 
 
 
