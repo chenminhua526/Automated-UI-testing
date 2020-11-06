@@ -5,7 +5,7 @@ import openpyxl
 class ReadExcel:
 
     def __init__(self, file, sheet_name):
-        path = os.path.dirname(os.path.abspath('.'))
+        path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
         self.file = os.path.join(path, 'testData', file)
         self.sheet_name = sheet_name
 
